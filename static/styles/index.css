@@ -1,0 +1,15 @@
+.auto-complete-items div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid black;
+}
+
+.auto-complete-items div img {
+    width: 40%;
+}
+
+.auto-complete-items div:hover {
+    background-color: lightblue;
+}

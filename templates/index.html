@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 align="center">
+            Game Recommendation
+        </h1>
+        <div class="row">
+            <form action="">
+                <div class="form-group">
+                    <label for="game-name">
+                        Select Game
+                    </label><br>
+                    <input type="search" id="game-name" class="form-control" placeholder="Enter your favorite game">
+                </div>
+                <div class="auto-complete-items">
+
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Recommendation</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        let alreadyIn = []
+
+        $(document).ready(() => {
+            $("#game-name").on('keyup', () => {
+                let search = $("#game-name").val()
+                let regex = new RegExp(search, "i") // "i" = case insensitive
+                let nameInsert = []
+                let imageInsert = []
+                $.getJSON("{{ url_for('static', filename='data/game_list.json') }}", (data) => {
+                    $.each(data, (key, value) => {
+                        if (value.game_name.search(regex) != -1 && search != "" && nameInsert.length < 5) { // exists
+                            nameInsert.push(value.game_name)
+                            imageInsert.push(value.game_image_link)
+                        }
+                    })
+                    if (nameInsert.length != alreadyIn.length || nameInsert.toString() === alreadyIn.toString()) {
+                        $(".auto-complete-items").html("")
+                        for (let i = 0; i < nameInsert.length; i++) {
+                            $(".auto-complete-items").append(
+                                `
+                                <div class="ac-items-${i}">
+                                    <img src="${imageInsert[i]}">
+                                    <p>${nameInsert[i]}</p>
+                                </div>
+                                `
+                            )
+                            alreadyIn.push(nameInsert[i])
+                            $(`.ac-items-${i}`).click(function () {
+                                console.log("test")
+                                $("#game-name").val($(`.ac-items-${i} p`).text())
+                                $(".auto-complete-items").html("")
+                            })
+                        } 
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
