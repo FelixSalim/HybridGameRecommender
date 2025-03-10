@@ -15,11 +15,16 @@
         </h1>
         <div class="row">
             <form action="{{ url_for('index') }}" method="post">
-                <div class="form-group">
+                <div class="form-group has-validation">
                     <label for="game-name">
                         Select Game
                     </label><br>
                     <input type="search" id="game-name" class="form-control" placeholder="Enter your favorite game" name="game-name">
+                    {% if error %}
+                        <div class="text-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="auto-complete-items">
 

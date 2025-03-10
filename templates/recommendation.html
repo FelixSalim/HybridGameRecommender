@@ -36,7 +36,7 @@
                     <td>{{ recommendations[i]['game_name'] }}</td>
                     <td>{{ recommendations[i]['game_data']['all_reviews'].values[0] }}</td>
                     <td>{{ recommendations[i]['game_data']['developer'].values[0] }}</td>
-                    <td><a href="{{ recommendations[i]['game_data']['url'].values[0] }}">Visit Page</a></td>
+                    <td><a target="_blank" href="{{ recommendations[i]['game_data']['url'].values[0] }}">Visit Page</a></td>
                 </tr>
             {% endfor %}
         </tbody>
