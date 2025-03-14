@@ -22,7 +22,7 @@
         <div class="row mt-5">
             <form action="{{ url_for('index') }}" method="post">
                 <div class="form-group has-validation">
-                    <input type="search" id="game-name" class="form-control" placeholder="Enter your favorite game" name="game-name">
+                    <input type="search" id="game-name" class="form-control" placeholder="Enter your favorite game" name="game-name" autocomplete="off">
                     {% if error %}
                         <div class="text-danger">
                             {{ error }}

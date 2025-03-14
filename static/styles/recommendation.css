@@ -1,4 +1,13 @@
-td, th {
-    vertical-align: center;
-    text-align: center;
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif
+}
+
+.title {
+    color: #40034B;
+    font-family: "Holtwood One SC", serif;
+    font-weight: 400;
+    font-size: 2em;
 }
