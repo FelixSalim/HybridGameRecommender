@@ -22,7 +22,7 @@
                         <img src="{{ recommendations[i]['image_link'] }}" class="card-img" alt="...">
                         <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .4;">
                             <h5 class="card-title mb-2">{{ recommendations[i]['game_name'] }}</h5>
-                            <a href="{{ url_for('game_details', recommendations=recommendations, index=i) }}" class="btn btn-primary">Details</a>
+                            <a href="{{ url_for('game_details', name=recommendations[i]['game_name'], image_link=recommendations[i]['image_link'], genre=recommendations[i]['game_data']['genre'].values[0], rating=recommendations[i]['game_data']['all_reviews'].values[0], game_link=recommendations[i]['game_data']['url'].values[0]) }}" class="btn btn-primary">Details</a>
                             <a href="{{ recommendations[i]['game_data']['url'].values[0] }}" target="_blank" class="btn btn-primary">Visit Store</a>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             <img src="{{ recommendations[i + 1]['image_link'] }}" class="card-img" alt="...">
                             <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .4;">
                                 <h5 class="card-title mb-2">{{ recommendations[i + 1]['game_name'] }}</h5>
-                                <a href="{{ url_for('game_details', recommendations=recommendations, index=i+1) }}" class="btn btn-primary">Details</a>
+                                <a href="{{ url_for('game_details', name=recommendations[i + 1]['game_name'], image_link=recommendations[i + 1]['image_link'], genre=recommendations[i + 1]['game_data']['genre'].values[0], rating=recommendations[i + 1]['game_data']['all_reviews'].values[0], game_link=recommendations[i + 1]['game_data']['url'].values[0]) }}" class="btn btn-primary">Details</a>
                                 <a href="{{ recommendations[i + 1]['game_data']['url'].values[0] }}" target="_blank" class="btn btn-primary">Visit Store</a>
                             </div>
                         </div>
